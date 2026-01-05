@@ -1,0 +1,11 @@
+# MODEL PROPERTIES
+model_name: 'FasterRCNN-ResNet50-OD'
+checkpoint_path: /Path/To/checkpoint.pth  # Path to a model checkpoint file, which contains the model weights that should be evaluated.
+
+# GPU SETTINGS
+gpu_id: 1  # The integer ID of the GPU, which should be used during the evaluation. Only single-GPU inference currently supported.
+
+# DATASET PARAMETERS
+dataset: CityPersons  # Name of the dataset, used for the evaluation. Options: KIA or CityPersons.
+data_path: /Path/To/CityPersons  # Path to the dataset root folder.
+heatmap_path: /Path/To/2D_heatmaps # Path to the folder in which heatmaps of each model is saved

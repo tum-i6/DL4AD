@@ -1,0 +1,50 @@
+# MODEL PROPERTIES
+model_name: MaskRCNN-ResNet50-IS  # Name of the detection model, which should be trained. See the list at the bottom of this page for all the supported models.
+pretrained_weights_path: /Path/To/final_model.pth  # Path to a model weights file, which should be used for fine-tuning the detector.
+
+# DATASET PARAMETERS
+dataset: CityPersons  # Name of the dataset, which should be used for training. Options: KIA or CityPersons.
+data_path: /Path/To/CityPersons  # Path to the dataset root folder.
+
+# PEDESTRIAN HYPERPARAMETERS
+min_obj_pixels: 1  # Filter out all pedestrian instances (during training) that have a lower amount of visible instance pixels than here specified. Must be an integer number greater or equal to zero. Used to filter out small or heavily occluded pedestrians with a too low amount of visible instance pixels. Set this to 1 to include all visible pedestrian instances during training.
+max_occl: 0.99  # Filter out all pedestrian instances (during training) that have a higher occlusion rate than here specified. Must be a float number between 0 and 1.0. Higher values mean that samples with higher occlusions are included during training. Set this to 0.99 to include all visible pedestrian instances during training (1.0 means fully occluded and not visible at all).
+max_distance: 500  # Filter out all pedestrian instances (during training) that have a higher distance than here specified. Must be an integer number greater or equal to zero, that specifies the distance in meters. Set this to 100 to include all pedestrian instances during training for the KIA dataset (100 meters is the highest annotated distance value).
+
+# GPU SETTINGS
+gpu_id: 1  # The integer ID of the GPU, which should be used for training. Only single-GPU training currently supported.
+num_workers: 2  # Amount of sub-processes for loading the data.
+
+# TRAINING HYPERPARAMETERS
+num_epochs: 50  # Amount of training epochs.
+batch_size: 4  # Amount of training images per batch.
+seed: 1  # Seed for the random module (used for reproducibility).
+
+# OPTIMIZER HYPERPARAMETERS
+optimizer: SGD  # Name of the algorithm used for optimizing the loss (Options: SGD or Adam).
+learning_rate: 0.01  # The learning rate for the optimizer. Recommendation: Use 0.01 for all models except RetinaNet and SSD300 (0.001).
+weight_decay: 0.0001  # The lambda parameter for the L2 regularisation loss.
+momentum: 0.9  # The momentum parameter for stochastic gradient descent (SGD).
+
+# LEARNING RATE SCHEDULER HYPERPARAMETERS
+lr_scheduler_step_size: 10  # Epoch frequency after which the learning rate should be adjusted.
+lr_scheduler_gamma: 0.1  # The value by which the learning rate should be decreased.
+
+# PATH PARAMETERS
+output_path: /Path/To/training_runs  # Path to the output folder, where the training session (trained model weights) will be stored.
+
+
+# SUPPORTED MODELS
+# Naming syntax for every model: {architecture name}-{backbone name}-{task}.
+
+# List of plain object detection (OD) models:
+# FasterRCNN-ResNet50-OD       -> two-stage detector
+# FCOS-ResNet50-OD             -> one-stage detector
+# RetinaNet-ResNet50-OD        -> one-stage detector
+# SSD300-ResNet50-OD           -> one-stage detector
+
+# List of object detection models that support keypoint detection (KD):
+# KeypointRCNN-ResNet50-KD     -> two-stage detector
+
+# List of object detection models that support instance segmentation (IS):
+# MaskRCNN-ResNet50-IS         -> two-stage detector

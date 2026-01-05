@@ -1,0 +1,120 @@
+# Name of the dataset, which should be used for the analysis (Options: 'KIA-Pedestrian-Detection' or 'CityPersons').
+dataset_name: 'CityPersons'
+
+# Dictionary, which maps the names of the detection models to the corresponding FiftyOne label field names.
+prediction_fields: {
+    #'FasterRCNN-ResNet50-OD': 'prediction_FasterRCNN-ResNet50-OD',
+    'FasterRCNN-ResNet50-OD': 'prediction_FasterRCNN-ResNet50-OD_heatmaps',
+    #'MaskRCNN-ResNet50-IS': 'prediction_MaskRCNN-ResNet50-IS',
+    'MaskRCNN-ResNet50-IS': 'prediction_MaskRCNN-ResNet50-IS_heatmaps',
+    #'KeypointRCNN-ResNet50-KD': 'prediction_KeypointRCNN-ResNet50-KD',  # Comment this out for CityPersons
+    #'FCOS-ResNet50-OD': 'prediction_FCOS-ResNet50-OD',
+    'FCOS-ResNet50-OD': 'prediction_FCOS-ResNet50-OD_heatmaps',
+    #'RetinaNet-ResNet50-OD': 'prediction_RetinaNet-ResNet50-OD',
+    'RetinaNet-ResNet50-OD': 'prediction_RetinaNet-ResNet50-OD_heatmaps',
+    #'SSD300-ResNet50-OD': 'prediction_SSD300-ResNet50-OD'
+}
+
+# Dictionary, which holds the information about the model specific confidence thresholds for each dataset and model.
+conf_thresholds: {
+    'KIA-Pedestrian-Detection': {
+        'FasterRCNN-ResNet50-OD': 0.8,
+        'MaskRCNN-ResNet50-IS': 0.8,
+        'KeypointRCNN-ResNet50-KD': 0.85,
+        'FCOS-ResNet50-OD': 0.50,
+        'RetinaNet-ResNet50-OD': 0.4,
+        'SSD300-ResNet50-OD': 0.25
+    },
+    'CityPersons': {
+        'FasterRCNN-ResNet50-OD': 0.85,
+        'MaskRCNN-ResNet50-IS': 0.8,
+        'FCOS-ResNet50-OD': 0.5,
+        'RetinaNet-ResNet50-OD': 0.5,
+        'SSD300-ResNet50-OD': 0.2
+    }
+}
+
+# Dictionary, which holds the detection performance for each model on each dataset (precision, recall and F1-score) and also the averaged detection performance on a dataset over all models.
+model_baseline_performance: {
+    'KIA-Pedestrian-Detection': {
+        'Averaged Overall Detection Performance': {'F1': 0.891, 'Precision': 0.941, 'Recall': 0.847},
+        'FasterRCNN-ResNet50-OD': {'F1': 0.93, 'Precision': 0.977, 'Recall': 0.888},
+        'MaskRCNN-ResNet50-IS': {'F1': 0.933, 'Precision': 0.977, 'Recall': 0.894},
+        'KeypointRCNN-ResNet50-KD': {'F1': 0.93, 'Precision': 0.978, 'Recall': 0.888},
+        'FCOS-ResNet50-OD': {'F1': 0.921, 'Precision': 0.973, 'Recall': 0.874},
+        'RetinaNet-ResNet50-OD': {'F1': 0.893, 'Precision': 0.936, 'Recall': 0.854},
+        'SSD300-ResNet50-OD': {'F1': 0.739, 'Precision': 0.806, 'Recall': 0.681}
+    },
+    'CityPersons': {
+        'Averaged Overall Detection Performance': {'F1': 0.808, 'Precision': 0.887, 'Recall': 0.743},
+        'FasterRCNN-ResNet50-OD': {'F1': 0.86, 'Precision': 0.928, 'Recall': 0.802},
+        'MaskRCNN-ResNet50-IS': {'F1': 0.860, 'Precision': 0.924, 'Recall': 0.805},
+        'FCOS-ResNet50-OD': {'F1': 0.851, 'Precision': 0.912, 'Recall': 0.798},
+        'RetinaNet-ResNet50-OD': {'F1': 0.831, 'Precision': 0.926, 'Recall': 0.754},
+        'SSD300-ResNet50-OD': {'F1': 0.638, 'Precision': 0.744, 'Recall': 0.558}
+    }
+}
+
+# Dictionary, which maps the names of the detection models to the corresponding FiftyOne evaluation keys.
+eval_keys: {
+    #'FasterRCNN-ResNet50-OD': 'eval_prediction_FasterRCNN_ResNet50_OD',
+    'FasterRCNN-ResNet50-OD': 'eval_prediction_FasterRCNN_ResNet50_OD_heatmaps',
+    #'MaskRCNN-ResNet50-IS': 'eval_prediction_MaskRCNN_ResNet50_IS',
+    'MaskRCNN-ResNet50-IS': 'eval_prediction_MaskRCNN_ResNet50_IS_heatmaps',
+    #'KeypointRCNN-ResNet50-KD': 'eval_prediction_KeypointRCNN_ResNet50_KD',  # Comment this out for CityPersons
+    #'FCOS-ResNet50-OD': 'eval_prediction_FCOS_ResNet50_OD',
+    'FCOS-ResNet50-OD': 'eval_prediction_FCOS_ResNet50_OD_heatmaps',
+    #'RetinaNet-ResNet50-OD': 'eval_prediction_RetinaNet_ResNet50_OD',
+    'RetinaNet-ResNet50-OD': 'eval_prediction_RetinaNet_ResNet50_OD_heatmaps',
+    #'SSD300-ResNet50-OD': 'eval_prediction_SSD300_ResNet50_OD'
+}
+
+# Dictionary, which holds the names of the performance limiting factors (PLFs), which appear as FiftyOne sample/detection attributes and are categorized based on whether they are computed for a sample or an object, and whether they are numerical or categorical.
+plfs: {
+    'sample': {
+        'numerical': [
+            'brightness',
+            'contrast',
+            'edge_strength',
+            #'fog_intensity',  # Comment this out for CityPersons
+            #'lens_flare_intensity',  # Comment this out for CityPersons
+            #'vignette_intensity'  # Comment this out for CityPersons
+        ],
+        'categorical': [
+            #'daytime_type',  # Comment this out for CityPersons
+            #'sky_type',  # Comment this out for CityPersons
+            #'wetness_type'  # Comment this out for CityPersons
+        ]
+    },
+    'object': {
+        'numerical': [
+            'bbox_height',
+            'bbox_aspect_ratio',
+            'visible_instance_pixels',
+            'occlusion_ratio',
+            'distance',
+            'foreground_brightness',
+            'contrast_to_background',
+            'entropy',
+            'background_edge_strength',
+            'boundary_edge_strength',
+            'crowdedness'
+        ],
+        'categorical': [
+            'citypersons_label',  # Comment this out for KIA-Pedestrian-Detection
+            'truncated',
+            #'out_of_distribution'  # Comment this out for CityPersons
+        ]
+    }
+}
+
+# Specify the minimum amount of pedestrian samples for a specific PLF value to be considered as a valid result.
+min_plf_samples: 10
+
+# The destination path for storing the pickle file, which contains the prediction performance with respect to the PLFs (raw PLF analysis data).
+destination_path: '/Path/To/plf_performance_data'
+
+evaluate_heatmaps: True   # If there exists a heatmap to be evaluated, the code would also add another TP based on the heatmaps
+heatmap_path: /Path/To/2D_heatmaps # Path to the folder in which heatmaps of each model is saved
+heatmap_thr: 25
+heatmap_intersection_thr: 0.5

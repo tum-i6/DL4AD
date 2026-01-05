@@ -1,0 +1,72 @@
+# MODEL PROPERTIES
+model_name: ResNeXt101  # Name of the classification model, which should be trained. See the list at the bottom of this page for all the supported models.
+
+# TRAINING HYPERPARAMETERS
+num_epochs: 100  # Amount of training epochs.
+patience: 15  # Amount of training epochs without any performance increase after which the training automatically ends.
+samples_per_class: 2000  # Amount of samples per class for the augmented train dataset. Each class will have this amount of samples.
+batch_size: 12  # Amount of training images per batch.
+device_ids: '3'  # GPU index values for training on multiple GPUs (e.g. '0,1,3'). Irrelevant if training on CPU.
+num_workers: 1  # Amount of sub-processes for loading the data.
+seed: 1  # Seed for the random torch module.
+
+# OPTIMIZER HYPERPARAMETERS
+optimizer: Adam  # Name of the algorithm used for optimizing the loss (Options: SGD or Adam).
+learning_rate: 0.0001  # The learning rate for the optimizer.
+weight_decay: 0  # The lambda parameter for the L2 regularisation loss.
+momentum: 0.9  # The momentum parameter for stochastic gradient descent (SGD).
+
+# PATH PARAMETERS
+data_path: /path/to/data  # Path to the dataset folder, where the pickled_data folder is located.
+output_path: /path/to/trainig_output  # Path to the output folder, where the training sessions (including the model weights) will be stored.
+pcl_active: True
+num_classes: 43
+dataset: gtsrb    # imagenet, gtsrb, cure_tsd
+training_method: combined   #ce, pcl, wpcl, mspcl, combined
+
+# List of supported models:
+# VGG16
+# VGG19
+# InceptionV3
+# ResNet18
+# ResNet50
+# ResNet101
+# ResNet152
+# WideResNet50
+# WideResNet101
+# ResNeXt50
+# ResNeXt101
+
+cpl_crit_1_sizes:
+  {
+    'ResNet18': 512,
+    'ResNet50': 2048,
+    'ResNet101': 2048,
+    'ResNet152': 2048,
+    'WideResNet50': 2048,
+    'WideResNet101': 2048,
+    'ResNeXt50': 2048,
+    'ResNeXt101': 2048,
+    'VGG16': 25088,
+    'VGG19': 25088,
+    'InceptionV3': 2048,
+  }
+
+cpl_crit_2_sizes:
+  {
+    'ResNet18': 512,
+    'ResNet50': 2048,
+    'ResNet101': 2048,
+    'ResNet152': 2048,
+    'WideResNet50': 2048,
+    'WideResNet101': 2048,
+    'ResNeXt50': 2048,
+    'ResNeXt101': 2048,
+    'VGG16': 25088,
+    'VGG19': 25088,
+    'InceptionV3': 2048,
+  }
+pcl_custom_distance: False
+pcl_custom_distance_rate: 10
+pcl_weight-prox: 0.05
+pcl_weight-conprox: 0.0001
